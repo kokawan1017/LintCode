@@ -1,6 +1,8 @@
 // Fibonacci.cpp : 定义控制台应用程序的入口点。
 //
 /*
+http://www.lintcode.com/en/problem/fibonacci/
+
 Find the Nth number in Fibonacci sequence.
 
 A Fibonacci sequence is defined as follow:
