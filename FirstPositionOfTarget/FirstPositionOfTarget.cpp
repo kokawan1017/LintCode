@@ -9,7 +9,6 @@ For a given sorted array (ascending order) and a target number, find the first i
 
 If the target number does not exist in the array, return -1.
 
-Have you met this question in a real interview? Yes
 Example
 If the array is [1, 2, 3, 3, 4, 5, 10], for given target 3, return 2.
 
@@ -29,29 +28,28 @@ int search(std::vector<int>& array, int target, int start, int end)
         return -1;
     }
 
-    int mid = (end - start) / 2;
+    int mid = start + (end - start) / 2;
 
     if (array[mid] == target)
     {
-        while (mid != start)
+        int pos = search(array, target, start, mid);
+        if (pos == -1)
         {
-            --mid;
-            if (array[mid] < target)
-            {
-                ++mid;
-                break;
-            }
+            return mid;
         }
-        return mid;
+
+        return pos;
     }
 
     if (array[mid] < target)
     {
-        return search(array, target, mid + 1, end);
+        int pos = search(array, target, mid + 1, end);
+        return pos;
     }
     else if (target < array[mid])
     {
-        return search(array, target, start, mid);
+        int pos = search(array, target, start, mid);
+        return pos;
     }
 
     return -1;
@@ -69,6 +67,14 @@ int main()
     std::vector<int> nums = { 1, 2, 3, 3, 4, 5, 10 };
 
     std::cout << binarySearch(nums, 3) << std::endl;
+
+    std::vector<int> n2 = { 2,6,8,13,15,17,17,18,19,20 };
+
+    std::cout << binarySearch(n2, 15) << std::endl;
+
+    std::vector<int> n3 = { 3,4,5,8,8,8,8,10,13,14 };
+
+    std::cout << binarySearch(n3, 8) << std::endl;
 
     return 0;
 }
