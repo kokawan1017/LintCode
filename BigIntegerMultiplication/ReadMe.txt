@@ -2,29 +2,11 @@
     控制台应用程序：BigIntegerMultiplication 项目概述
 ========================================================================
 
-应用程序向导已为您创建了此 BigIntegerMultiplication 应用程序。
+原题链接：
+http://www.lintcode.com/en/problem/big-integer-multiplication/
 
-本文件概要介绍组成 BigIntegerMultiplication 应用程序的每个文件的内容。
-
-
-BigIntegerMultiplication.vcxproj
-    这是使用应用程序向导生成的 VC++ 项目的主项目文件，其中包含生成该文件的 Visual C++ 的版本信息，以及有关使用应用程序向导选择的平台、配置和项目功能的信息。
-
-BigIntegerMultiplication.vcxproj.filters
-    这是使用“应用程序向导”生成的 VC++ 项目筛选器文件。它包含有关项目文件与筛选器之间的关联信息。在 IDE 中，通过这种关联，在特定节点下以分组形式显示具有相似扩展名的文件。例如，“.cpp”文件与“源文件”筛选器关联。
-
-BigIntegerMultiplication.cpp
-    这是主应用程序源文件。
-
-/////////////////////////////////////////////////////////////////////////////
-其他标准文件:
-
-StdAfx.h, StdAfx.cpp
-    这些文件用于生成名为 BigIntegerMultiplication.pch 的预编译头 (PCH) 文件和名为 StdAfx.obj 的预编译类型文件。
-
-/////////////////////////////////////////////////////////////////////////////
-其他注释:
-
-应用程序向导使用“TODO:”注释来指示应添加或自定义的源代码部分。
-
-/////////////////////////////////////////////////////////////////////////////
+大致思路：
+主要实现3个方法：
+1、实现string和char类型相乘
+2、实现string与string相加
+3、在1和2的基础上，遍历其中一个乘数，用每个char逐个和string相乘，再将结果相加
