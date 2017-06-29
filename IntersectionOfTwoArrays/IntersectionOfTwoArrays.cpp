@@ -3,37 +3,24 @@
 
 #include "stdafx.h"
 #include <vector>
-
-bool contains(const std::vector<int>& numbers, int target)
-{
-    for (size_t i = 0; i != numbers.size(); ++i)
-    {
-        if (target == numbers[i])
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
+#include <algorithm>
 
 std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2)
 {
     // Write your code here
-    std::vector<int> resultVec;
+    std::sort(nums1.begin(), nums1.end());
+    std::sort(nums2.begin(), nums2.end());
 
-    for (size_t i = 0; i != nums1.size(); ++i)
-    {
-        if (contains(nums2, nums1[i]))
-        {
-            if (!contains(resultVec, nums1[i]))
-            {
-                resultVec.push_back(nums1[i]);
-            }
-        }
-    }
+    std::vector<int> result(nums1.size() + nums2.size());
 
-    return resultVec;
+    auto it = std::set_intersection(nums1.begin(), nums1.end(), nums2.begin(), nums2.end(), result.begin());
+
+    result.resize(it - result.begin());
+
+    std::sort(result.begin(), result.end());
+    auto it2 = std::unique(result.begin(), result.end());
+    result.resize(it2 - result.begin());
+    return result;
 }
 
 int main()
