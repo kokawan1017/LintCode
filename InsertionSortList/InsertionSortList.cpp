@@ -42,18 +42,24 @@ public:
     */
     ListNode *insertionSortList(ListNode *head)
     {
-        // write your code here
-        //int step = 0;
+        if (!head)
+        {
+            return NULL;
+        }
+
+        ListNode* newHead = new ListNode(head->val);
 
         // 从第2个元素开始遍历
         for (ListNode* node = head->next; node != NULL; node = node->next)
         {
-            //++step;
-            //ListNode* flag = node;
-            
-            //for ()
-            //{
-            //}
+            if (node->val < newHead->val)
+            {
+                // 放前面
+            }
+            else
+            {
+                // 放后面
+            }
         }
     }
 
