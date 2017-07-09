@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 class ListNode
 {
@@ -36,6 +37,43 @@ public:
         }
     }
 
+    // 按照升序，将node插入到head列表中
+    void insertIntoList(ListNode*& head, ListNode* newNode)
+    {
+        if (NULL == head)
+        {
+            head = newNode;
+            return;
+        }
+
+        ListNode* node = head;
+        ListNode* prev = NULL;
+        for (; node != NULL; node = node->next)
+        {
+            if (newNode->val < node->val)
+            {
+                newNode->next = node;
+                if (prev)
+                {
+                    // 当前node不是头结点
+                    prev->next = newNode;
+                    newNode->next = node;
+                }
+                else
+                {
+                    // 当前node是头结点
+                    newNode->next = node;
+                    head = newNode;
+                }
+                return;
+            }
+
+            prev = node;
+        }
+
+        prev->next = newNode;
+    }
+
     /**
     * @param head: The first node of linked list.
     * @return: The head of linked list.
@@ -43,18 +81,21 @@ public:
     ListNode *insertionSortList(ListNode *head)
     {
         // write your code here
-        //int step = 0;
+        if (NULL == head)
+        {
+            return NULL;
+        }
+
+        ListNode* newHead = new ListNode(head->val);
 
         // 从第2个元素开始遍历
         for (ListNode* node = head->next; node != NULL; node = node->next)
         {
-            //++step;
-            //ListNode* flag = node;
-            
-            //for ()
-            //{
-            //}
+            ListNode* newNode = new ListNode(node->val);
+            insertIntoList(newHead, newNode);
         }
+
+        return newHead;
     }
 
     void printList(ListNode* head)
@@ -70,11 +111,38 @@ public:
     }
 };
 
+ListNode* createList(const std::vector<int>& numbers)
+{
+    if (numbers.empty())
+    {
+        return NULL;
+    }
+
+    ListNode* head = new ListNode(numbers[0]);
+    ListNode* tail = head;
+    for (size_t i = 1; i != numbers.size(); ++i)
+    {
+        ListNode* newNode = new ListNode(numbers[i]);
+        tail->next = newNode;
+        tail = newNode;
+    }
+
+    return head;
+}
+
 int main()
 {
     int aaa[5] = { 4,5,1,3,2 };
     Solution s;
     s.insert_sort(aaa, 5);
+
+    std::vector<int> numbers = { 1,3,2,0 };
+
+    ListNode* head = createList(numbers);
+
+    ListNode* newHead = s.insertionSortList(head);
+    s.printList(newHead);
+
     return 0;
 }
 
