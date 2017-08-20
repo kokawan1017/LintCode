@@ -143,6 +143,8 @@ int main()
     ListNode* newHead = s.insertionSortList(head);
     s.printList(newHead);
 
+    std::cout << "hehe" << std::endl;
+
     return 0;
 }
 
