@@ -16,6 +16,18 @@ int countX(long long n, long long x)
     return count;
 }
 
+int countX_2(long long n, long long x)
+{
+    int count = 0;
+    long long power = x;
+    while (n % power == 0)
+    {
+        ++count;
+        power *= x;
+    }
+    return count;
+}
+
 long long trailingZeros(long long n)
 {
     // write your code here, try to do it without arithmetic operators.
@@ -33,8 +45,11 @@ long long trailingZeros(long long n)
     return std::min(count2, count5);
 }
 
+long long trailingZeros_2(long long n)
+{
+}
+
 int main()
 {
     return 0;
 }
-
