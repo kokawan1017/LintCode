@@ -1,5 +1,6 @@
 ﻿// SortList.cpp : 定义控制台应用程序的入口点。
 //
+// http://www.lintcode.com/zh-cn/problem/sort-list/
 
 #include "stdafx.h"
 
@@ -18,6 +19,7 @@ public:
 // 按照升序，将node插入到head列表中
 void insertIntoList(ListNode*& head, ListNode* newNode)
 {
+    newNode->next = NULL;
     if (NULL == head)
     {
         head = newNode;
@@ -30,7 +32,6 @@ void insertIntoList(ListNode*& head, ListNode* newNode)
     {
         if (newNode->val < node->val)
         {
-            newNode->next = node;
             if (prev)
             {
                 // 当前node不是头结点
@@ -54,54 +55,64 @@ void insertIntoList(ListNode*& head, ListNode* newNode)
 
 ListNode * sortList(ListNode * head)
 {
-    // write your code here
-    ListNode* newHead = NULL;
-    for (ListNode* node = head; node != NULL; )
+    if (head == NULL || head->next == NULL)
     {
-        if (newHead)
-        {
-            // 备份下一个节点
-            ListNode* next = node->next;
+        return head;
+    }
 
-            // 用插入排序, 把节点加入到新的链表
-            for (ListNode* pn = newHead; pn != NULL; pn = pn->next)
-            {
-                // 插入到pn后面
-                if (pn->val < node->val)
-                {
-                    if (pn->next)
-                    {
-                        if (node->val < pn->next->val)
-                        {
-                            // 插入到pn后面
-                        }
-                    }
-                    else
-                    {
-                        pn->next = node;
-                        pn->next->next = NULL;
-                    }
-                }
-                else
-                {
-
-                }
-            }
-
-            node = next;
-        }
-        else
-        {
-            newHead = node;
-            node = node->next;
-            newHead->next = NULL;
-        }
+    ListNode* newHead = head;
+    head = head->next;
+    newHead->next = NULL;
+    for (ListNode* node = head; node != NULL;)
+    {
+        ListNode* next = node->next;
+        insertIntoList(newHead, node);
+        node = next;
     }
 
     return newHead;
 }
 
+ListNode* sortList_select(ListNode * head)
+{
+    ListNode* small = NULL;
+    int tmp = 0;
+    for (ListNode* i = head; i != NULL; i = i->next)
+    {
+        small = i;
+        for (ListNode* j = i->next; j != NULL; j = j->next)
+        {
+            if (j->val < small->val)
+            {
+                small = j;
+            }
+        }
+
+        if (small != i)
+        {
+            tmp = small->val;
+            small->val = i->val;
+            i->val = tmp;
+        }
+    }
+
+    return head;
+}
+
+ListNode* sortList_quick(ListNode* head)
+{
+
+}
+
+
 int main()
 {
+    ListNode* head = new ListNode(0);
+    head->next = new ListNode(3);
+    head->next->next = new ListNode(1);
+    head->next->next->next = new ListNode(-1);
+
+    head = sortList_select(head);
+
     return 0;
 }
