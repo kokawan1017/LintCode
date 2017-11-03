@@ -1,23 +1,27 @@
 ﻿// MinStack.cpp : 定义控制台应用程序的入口点。
 //
+// http://www.lintcode.com/zh-cn/problem/min-stack/
 
 #include "stdafx.h"
-#include <vector>
+#include <stack>
 
 class MinStack
 {
-    std::vector<int> data;
-    int minVal;
+    std::stack<int> data;
+    std::stack<int> mins;
 
 public:
     /*
     * @param a: An integer
     */
+    MinStack()
+    {
+    }
     MinStack(int a)
     {
         // do intialization if necessary
-        minVal = a;
-        data.push_back(a);
+        data.push(a);
+        mins.push(a);
     }
 
     /*
@@ -27,32 +31,44 @@ public:
     void push(int number)
     {
         // write your code here
-        data.push_back(number);
-        if (number < minVal)
+        if (mins.empty())
         {
-            minVal = number;
+            mins.push(number);
         }
+        else
+        {
+            if (number <= mins.top())
+            {
+                mins.push(number);
+            }
+        }
+        data.push(number);
     }
 
     /*
     * @param a: An integer
     * @return: An integer
     */
-    int pop(int a)
+    int pop()
     {
         // write your code here
-
+        int val = data.top();
+        if (val == mins.top())
+        {
+            mins.pop();
+        }
+        data.pop();
+        return val;
     }
 
     /*
     * @param a: An integer
     * @return: An integer
     */
-    int min(int a)
+    int min()
     {
         // write your code here
-        data.back();
-        return minVal;
+        return mins.top();
     }
 };
 
