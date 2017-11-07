@@ -99,9 +99,47 @@ ListNode* sortList_select(ListNode * head)
     return head;
 }
 
+void swap(int& a, int& b)
+{
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
+ListNode* partition(ListNode* first, ListNode* last)
+{
+    int key = first->val;
+    ListNode* p = first;
+    ListNode* q = p->next;
+
+    while (q != last)
+    {
+        if (q->val < key)
+        {
+            p = p->next;
+            swap(p->val, q->val);
+        }
+
+        q = q->next;
+    }
+    swap(p->val, first->val);
+    return p;
+}
+
+void quickSort(ListNode* first, ListNode* last)
+{
+    if (first != last)
+    {
+        ListNode* pivot = partition(first, last);
+        quickSort(first, pivot);
+        quickSort(pivot->next, last);
+    }
+}
+
 ListNode* sortList_quick(ListNode* head)
 {
-
+    quickSort(head, NULL);
+    return head;
 }
 
 
@@ -112,7 +150,7 @@ int main()
     head->next->next = new ListNode(1);
     head->next->next->next = new ListNode(-1);
 
-    head = sortList_select(head);
+    head = sortList_quick(head);
 
     return 0;
 }
