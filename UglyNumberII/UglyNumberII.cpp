@@ -3,6 +3,17 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <vector>
+
+int my_min(int a, int b)
+{
+    return a < b ? a : b;
+}
+
+int my_min(int a, int b, int c)
+{
+    return my_min(my_min(a, b), c);
+}
 
 bool isUgly(int n)
 {
@@ -49,8 +60,38 @@ int nthUglyNumber(int n)
     return ugly;
 }
 
+int nthUglyNumber_2(int n)
+{
+    std::vector<int> uglyNumbers;
+    uglyNumbers.push_back(1);
+
+    size_t i2 = 0;
+    size_t i3 = 0;
+    size_t i5 = 0;
+
+    while (uglyNumbers.size() < n)
+    {
+        int nextUgly = my_min(uglyNumbers[i2] * 2, uglyNumbers[i3] * 3, uglyNumbers[i5] * 5);
+        uglyNumbers.push_back(nextUgly);
+        while (nextUgly == uglyNumbers[i2] * 2)
+        {
+            ++i2;
+        }
+        while (nextUgly == uglyNumbers[i3] * 3)
+        {
+            ++i3;
+        }
+        while (nextUgly == uglyNumbers[i5] * 5)
+        {
+            ++i5;
+        }
+    }
+    return uglyNumbers.back();
+}
+
 int main()
 {
-    std::cout << nthUglyNumber(1665) << std::endl;
+    // 1665->1898437500
+    std::cout << nthUglyNumber_2(1665) << std::endl;
     return 0;
 }
