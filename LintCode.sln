@@ -65,6 +65,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PartitionList", "PartitionL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PartitionArray", "PartitionArray\PartitionArray.vcxproj", "{F9D7DD76-6C86-4C3D-A4FF-9520B4BDAE7C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaximumSubarray", "MaximumSubarray\MaximumSubarray.vcxproj", "{2F17586C-24A0-4A1F-965A-5CB14C206F73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -321,6 +323,14 @@ Global
 		{F9D7DD76-6C86-4C3D-A4FF-9520B4BDAE7C}.Release|x64.Build.0 = Release|x64
 		{F9D7DD76-6C86-4C3D-A4FF-9520B4BDAE7C}.Release|x86.ActiveCfg = Release|Win32
 		{F9D7DD76-6C86-4C3D-A4FF-9520B4BDAE7C}.Release|x86.Build.0 = Release|Win32
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Debug|x64.ActiveCfg = Debug|x64
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Debug|x64.Build.0 = Debug|x64
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Debug|x86.ActiveCfg = Debug|Win32
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Debug|x86.Build.0 = Debug|Win32
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Release|x64.ActiveCfg = Release|x64
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Release|x64.Build.0 = Release|x64
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Release|x86.ActiveCfg = Release|Win32
+		{2F17586C-24A0-4A1F-965A-5CB14C206F73}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
