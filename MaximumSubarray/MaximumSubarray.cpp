@@ -1,4 +1,4 @@
-// MaximumSubarray.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+ï»¿// MaximumSubarray.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 /*
 http://www.lintcode.com/zh-cn/problem/maximum-subarray/
@@ -9,6 +9,7 @@ http://www.lintcode.com/zh-cn/problem/maximum-subarray-iii/
 #include "stdafx.h"
 #include <vector>
 #include <iostream>
+#include <climits>
 
 int max2(int a, int b)
 {
@@ -44,30 +45,50 @@ int maxSubArrayImpl(std::vector<int> &nums, size_t first, size_t last)
     return max3(sumSelf, maxLeft, maxRight);
 }
 
-// ×î´ó×ÓÊı×é
+// æœ€å¤§å­æ•°ç»„
 int maxSubArray(std::vector<int> &nums)
 {
     return maxSubArrayImpl(nums, 0, nums.size());
 }
 
-// ×î´ó×ÓÊı×é2
+int maxsub_1(std::vector<int>& nums)
+{
+    int maxSoFar = INT_MIN;
+    size_t n = nums.size();
+    for (size_t i = 0; i != n; ++i)
+    {
+        int sum = 0;
+        for (size_t j = i; j < n; ++j)
+        {
+            sum += nums[j];
+            maxSoFar = max2(maxSoFar, sum);
+        }
+    }
+
+    return maxSoFar;
+}
+
+// æœ€å¤§å­æ•°ç»„2
 int maxTwoSubArrays(std::vector<int> &nums)
 {
     // write your code here
+    return 0;
 }
 
-// ×î´ó×ÓÊı×é3
+// æœ€å¤§å­æ•°ç»„3
 int maxSubArray(std::vector<int> &nums, int k)
 {
     // write your code here
+    return 0;
 }
 
 int main()
 {
     std::vector<int> nums = { -2,2,-3,4,-1,2,1,-5,3 };
-    std::cout << maxSubArray(nums);
+    std::cout << maxSubArray(nums) << std::endl;
 
-    std::vector<int> nums2 = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-15,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 };
-    std::cout << maxSubArray(nums);
+    //std::vector<int> nums2 = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-15,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 };
+    std::vector<int> nums2 = { 1,1,1,1,1,1,1,1,1,1 };
+    std::cout << maxsub_1(nums2) << std::endl;
     return 0;
 }
